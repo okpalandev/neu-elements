@@ -1,0 +1,121 @@
+/**
+ * Variables for the dial component.
+ */
+$dial-size: 200px;
+$dial-inner-size: 150px;
+$dial-outer-size: 180px;
+
+.dial {
+    position: relative;
+    width: $dial-size;
+    height: $dial-size;
+    border-radius: 50%;
+    outline: 2px solid black;
+    transition: transform 0.5s;
+    transform-origin: 50% 50%;
+    overflow: visible;
+    transform: rotate(-90deg);
+}
+
+/**
+ * Styles for the dial pointer.
+ */
+.dial--pointer {
+    display: block;
+    $y: var(--dial--pointer-y, 10px); // Update the value of $y or --dial--pointer-y
+    position: absolute;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: calc(#{$dial-inner-size} / 2);
+    transform-origin: 50% 100%;
+    transform: translate(-50%, -100%) rotate(0deg);
+    background: purple;
+    z-index: 9999;
+}
+
+/**
+ * Styles for the inner circle of the dial.
+ */
+.dial--inner {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $dial-inner-size;
+    height: $dial-inner-size;
+    border-radius: 50%;
+    outline: 2px solid black;
+    transform: translate(-50%, -50%) translateZ(50px); // Add translateZ to make it 3D
+    //  background: #ff0000; // Add background color
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+
+    &::before {
+        width: $dial-inner-size - 40px;
+        height: $dial-inner-size - 40px;
+    }
+
+    &::after {
+        width: $dial-inner-size - 20px;
+        height: $dial-inner-size - 20px;
+    }
+}
+
+/**
+ * Styles for the outer circle of the dial.
+ */
+.dial--outer {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $dial-outer-size;
+    height: $dial-outer-size;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    outline: 2px solid black;
+    background: #5b5bb800;
+}
+
+/**
+ * Styles for the marks on the inner and outer circles of the dial.
+ */
+.dial--marks {
+    display: flexbox;
+    display: flex;
+}
+
+@for $i from 1 through 6 {
+    $angle: 180 - (35 * ($i - 1));
+    .dial--mark:nth-child(#{$i}) {
+        flex-direction: row-reverse;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 2px;
+        height: 10px;
+        background: black;
+        transform-origin: 50% 50%;
+        transform: translate(-50%, -50%) rotate(#{$angle}deg) translate(0, -100px);
+        transition: transform 0.5s;
+        &::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transform: translateX(-50%) translateY(-100%);
+        }
+    }
+}

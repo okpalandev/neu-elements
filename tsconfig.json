@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "forceConsistentCasingInFileNames": true,
+        "target": "ES6",
+        "module": "es6",
+        "lib": ["es6", "dom","DOM.Iterable"],
+        "importHelpers": true,
+        "declaration": true,
+        "outDir": "dist",
+        "rootDir": "src",
+        "strict": true,
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": false
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "dist"]
+}

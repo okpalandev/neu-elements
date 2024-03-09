@@ -1,0 +1,45 @@
+
+:host,
+.neu-notice {
+	display: none;
+	padding-bottom: 60px;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	
+
+}
+
+.neu-notice.active {
+	display: block;
+}
+
+
+.neu-notice-close {
+	float: right;
+	content: '\2716;';
+
+}
+
+:host div.-mess,
+.neu-notice div.-mess {
+	height: auto;
+	width: 250px;
+}
+
+.neu-notice.active {
+	display: block;
+}
+
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
