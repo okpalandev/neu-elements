@@ -1,0 +1,75 @@
+@mixin contrast($color, $lightness: 20%, $darkness: 20%) {
+    $light-color: lighten($color, $lightness);
+    $dark-color: darken($color, $darkness);
+  
+    background-color: $color;
+    color: $light-color;
+  
+    &:hover {
+      background-color: $light-color;
+      color: $dark-color;
+    }
+    
+    &:active {
+      background-color: $dark-color;
+      color: $light-color;
+    }
+  }
+  
+  @mixin lighten($size) {
+    @if ($size == xs) {
+      @media (min-width: $desktop-xs) {
+        @content;
+      }
+    }
+    @else if ($size == sm) {
+      @media (min-width: $desktop-sm) {
+        @content;
+      }
+    }
+    @else if ($size == md) {
+      @media (min-width: $desktop-md) {
+        @content;
+      }
+    }
+    @else if ($size == lg) {
+      @media (min-width: $desktop-lg) {
+        @content;
+      }
+    }
+    @else if ($size == xl) {
+      @media (min-width: $desktop-xl) {
+        @content;
+      }
+    }
+  }
+  
+  
+  @mixin darken($size) {
+    @if ($size == xs) {
+      @media (min-width: $desktop-xs) {
+        @content;
+      }
+    }
+    @else if ($size == sm) {
+      @media (min-width: $desktop-sm) {
+        @content;
+      }
+    }
+    @else if ($size == md) {
+      @media (min-width: $desktop-md) {
+        @content;
+      }
+    }
+    @else if ($size == lg) {
+      @media (min-width: $desktop-lg) {
+        @content;
+      }
+    }
+    @else if ($size == xl) {
+      @media (min-width: $desktop-xl) {
+        @content;
+      }
+    }
+  }
+  

@@ -1,0 +1,90 @@
+
+$neu-light: #fcfcfc;
+$neu-dark: #3e3e3e;
+$neu-shadow-light: #ffffff;
+$neu-shadow-dark: #2a2a2a;
+$neu-radius: 10px;
+
+$neu-shadow-light: 5px;
+$neu-shadow-dark: -5px;
+$neu-blur: 10px;
+
+/**
+ * @mixin neu
+ * 
+ * This mixin applies a neumorphic effect to an element by setting its box-shadow property.
+ * 
+ * @param {string} $light-source - The light source direction. Default is "top left".
+ * @param {color} $light - The color of the light shadow. Default is #ffff (white).
+ * @param {color} $dark - The color of the dark shadow. Default is #0000 (black).
+ * 
+ * @return {void}
+ */
+@mixin neu($light-source: top left, $light: #ffff, $dark: #0000) {
+    $h1: if(index($light-source, left), $neu-shadow-light, $neu-shadow-dark);
+    $h2: if(index($light-source, left), $neu-shadow-dark, $neu-shadow-light);
+    $v1: if(index($light-source, top), $neu-shadow-light, $neu-shadow-dark);
+    $v2: if(index($light-source, top), $neu-shadow-dark, $neu-shadow-light);
+    box-shadow: #{$h1} #{$v1} $neu-blur $dark,
+    #{$h2} #{$v2} $neu-blur $light;
+};
+
+/**
+ * @mixin neu-shadow
+ * 
+ * This mixin applies a neumorphic effect to an element by setting its box-shadow property.
+ * 
+ * @param {string} $light-source - The light source direction. Default is "top left".
+ * @param {color} $light - The color of the light shadow. Default is #ffff (white).
+ * @param {color} $dark - The color of the dark shadow. Default is #0000 (black).
+ * 
+ * @return {void}
+ */
+@mixin neu-shadow($light-source: top left, $light: #ffff, $dark: #0000) {
+    $h1: if(index($light-source, left), $neu-shadow-light, $neu-shadow-dark);
+    $h2: if(index($light-source, left), $neu-shadow-dark, $neu-shadow-light);
+    $v1: if(index($light-source, top), $neu-shadow-light, $neu-shadow-dark);
+    $v2: if(index($light-source, top), $neu-shadow-dark, $neu-shadow-light);
+    box-shadow: #{$h1} #{$v1} $neu-blur $dark,
+    #{$h2} #{$v2} $neu-blur $light;
+};
+
+/**
+ * @mixin apply-scale-transform
+ * 
+ * This mixin applies a scale transformation to an element.
+ * 
+ * @param {number} $scale-factor - The scale factor. Default is 0.
+ * 
+ * @return {void}
+ */
+@mixin apply-scale-transform($scale-factor: 0) {
+    transform: scale(1.0 + $scale-factor * 0.1);
+};
+
+
+
+$neumorphix-colors: (
+    light: $neu-light,
+    dark: $neu-dark,
+    shadow-light: $neu-shadow-light,
+    shadow-dark: $neu-shadow-dark
+);
+
+
+@each $neu-color in (light, dark) {
+    .neu-#{$neu-color} {
+        background-color: map-get($neumorphix-colors, $neu-color); 
+        @include apply-scale-transform(0);
+        @include neu($neu-color);
+    }
+}
+
+@each $neu-color in (shadow-light, shadow-dark) {
+    .neu-#{$neu-color} {
+        background-color: map-get($neumorphix-colors, $neu-color); 
+        @include apply-scale-transform(0);
+        @include neu-shadow($neu-color);
+    }
+}
+
