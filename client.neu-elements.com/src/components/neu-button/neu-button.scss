@@ -1,0 +1,51 @@
+
+:host {
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border-radius: $neu-radius;
+    border: 1px solid transparent;
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1); // Example focus outline
+    }
+
+    &.neu-light {
+        background-color: $neu-light;
+        @include apply-scale-transform(0);
+        @include neu(light);
+    }
+
+    &.neu-dark {
+        background-color: $neu-dark;
+        @include apply-scale-transform(0);
+        @include neu(dark);
+    }
+
+    &.neu-shadow-light {
+        background-color: $neu-shadow-light;
+        @include apply-scale-transform(0);
+        @include neu-shadow(shadow-light);
+        @include neu(shadow-light);
+    }
+
+    &.neu-shadow-dark {
+        background-color: $neu-shadow-dark;
+        @include apply-scale-transform(0);
+        @include neu-shadow(shadow-dark);
+        @include neu(shadow-dark);
+    }
+}
