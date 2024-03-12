@@ -14,26 +14,30 @@ export class NeuButton extends HTMLElement {
    * @type {string}
    */
   ribbonText;
-
-  /**
-   * Indicates whether the element is connected to the DOM.
-   * @type {boolean}
-   * @private
-   */
-  _isConnected;
+  private _isConnected: boolean;
 
   constructor() {
     super();
     this._isConnected = false;
     this.showRibbon = false;
     this.ribbonText = '';
-    this.render();
   }
+  /**
+   * Indicates whether the element is connected to the DOM.
+   * @type {boolean}
+   * @private
+   */
 
   connectedCallback() {
     this._isConnected = true;
+    this.render();
   }
-
+  /**
+   * Indicates whether the element is connected to the DOM.
+   * @type {boolean}
+   * @private
+   * @returns {boolean} True if the element is connected to the DOM, otherwise false.
+   */
   disconnectedCallback() {
     this._isConnected = false;
   }
@@ -52,9 +56,9 @@ export class NeuButton extends HTMLElement {
    * @param {string} oldValue - The previous value of the attribute.
    * @param {string} newValue - The new value of the attribute.
    */
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
     if (name === 'ribbon-text' && oldValue !== newValue) {
-      this.ribbonText = newValue;
+      this.ribbonText = newValue ?? ''; // Assign an empty string if newValue is null
     }
     if (name === 'show-ribbon' && oldValue !== newValue) {
       this.showRibbon = newValue === 'true'; // convert string to boolean
@@ -63,6 +67,8 @@ export class NeuButton extends HTMLElement {
       this.render();
     }
   }
+  
+  
 
   /**
    * Renders the button element with the specified ribbon.
@@ -70,15 +76,14 @@ export class NeuButton extends HTMLElement {
   render() {
     if (this.shadowRoot) {
       this.shadowRoot.innerHTML = `
-        <style>
-          @import '../scss/tools.scss';
-          @import "./neu-button.scss";
-        </style>
+      <style>
+      @import '../scss/tools.scss';
+      @import 'neu-button.scss';
+      </style>
         <div class="neu-button ${this.showRibbon ? 'neu-shadow-light' : 'neu-light'}"
           role="button" 
           aria-label="Neu" 
-          aria-pressed="false"
-        >
+          aria-pressed="false">
           <slot></slot>
           ${this.showRibbon ? `<div class="neu-ribbon">${this.ribbonText}</div>` : ''}
         </div>
@@ -89,4 +94,3 @@ export class NeuButton extends HTMLElement {
 
 customElements.define('neu-button', NeuButton, { extends: 'button' });
 
-// usage: 

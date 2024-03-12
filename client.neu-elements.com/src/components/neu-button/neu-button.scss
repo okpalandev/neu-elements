@@ -1,5 +1,5 @@
 
-:host {
+:host-context(.neu-button) {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -7,7 +7,7 @@
     font-weight: bold;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    border-radius: $neu-radius;
+    border-radius: 50px;
     border: 1px solid transparent;
 
     &:hover {
