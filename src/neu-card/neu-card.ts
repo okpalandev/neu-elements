@@ -8,6 +8,11 @@ export class NeuCard extends HTMLElement {
     this.render();
   }
 
+
+  attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
+    this.render();
+  }
+  
   render() {
      this.innerHTML = `
       <div class="neu-card" role="region" aria-labelledby="neu-card-title">
@@ -18,6 +23,7 @@ export class NeuCard extends HTMLElement {
       </div>
     `;
   }
+
 }
 
 customElements.define('neu-card', NeuCard);

@@ -22,5 +22,5 @@ export default {
         scss({ output: 'dist/css/neu-elements.css' }), // Convert SCSS to CSS
         babel({ babelHelpers: 'bundled' }), // Transpile your code with Babel
         terser(), // Minify the output bundle
-    ],
+    ]
 };
